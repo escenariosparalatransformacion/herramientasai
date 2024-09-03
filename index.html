@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Marca Personal con IA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .group-card {
+            transition: all 0.3s ease;
+        }
+        .group-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .tool-card {
+            transition: transform 0.3s ease-in-out;
+        }
+        .tool-card:hover {
+            transform: scale(1.03);
+        }
+        @media print {
+            .no-print {
+                display: none;
+            }
+            body {
+                font-size: 12pt;
+            }
+            #workbook-content {
+                margin: 1in;
+            }
+            /* Estilos para que las áreas de texto se muestren en la impresión */
+            textarea {
+                border: 1px solid #ccc;
+                padding: 0.5rem;
+                height: auto; /* Ajusta la altura automáticamente al contenido */
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-r from-purple-50 to-pink-50">
+<header class="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-8">
+    <h1 class="text-4xl font-bold text-center mb-6">Guía de Marca Personal con IA</h1>
+    <nav class="flex justify-center space-x-4 flex-wrap" id="nav-buttons">
+        <!-- Los botones de navegación se insertarán aquí dinámicamente -->
+    </nav>
+</header>
+<main class="container mx-auto p-6">
+    <section id="intro" class="mb-10 bg-white rounded-lg shadow-lg p-6">
+        <h2 class="text-3xl font-semibold mb-4 text-purple-700">Introducción</h2>
+        <p class="text-lg mb-4 text-gray-700">Bienvenido a tu viaje de creación de marca personal potenciado por IA. Esta guía te llevará a través de varias herramientas de IA para desarrollar y mejorar tu marca personal. Sigue cada paso y completa los ejercicios para construir una identidad de marca sólida y coherente.</p>
+    </section>
+    <section id="tool-groups" class="space-y-10">
+        <!-- Los grupos de herramientas se insertarán aquí dinámicamente -->
+    </section>
+    <div class="text-center mt-10">
+        <button id="workbook-button" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
+            Ver Workbook
+        </button>
+    </div>
+</main>
+<div id="workbook" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden">
+    <div class="relative top-20 mx-auto p-5 border w-3/4 shadow-lg rounded-md bg-white">
+        <div class="mt-3">
+            <h3 class="text-2xl leading-6 font-medium text-gray-900 mb-4 text-center">Workbook</h3>
+            <div class="mt-2 px-7 py-3" id="workbook-content">
+                <!-- El contenido del workbook se insertará aquí dinámicamente -->
+            </div>
+            <div class="flex justify-center space-x-4 mt-6">
+                <button id="clear-workbook" class="px-4 py-2 bg-red-500 text-white text-base font-medium rounded-md shadow-sm hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300">
+                    Limpiar
+                </button>
+                <button id="print-workbook" class="px-4 py-2 bg-blue-500 text-white text-base font-medium rounded-md shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                    Imprimir
+                </button>
+                <button id="save-as-pdf" class="px-4 py-2 bg-yellow-500 text-white text-base font-medium rounded-md shadow-sm hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-300">
+                    Guardar como PDF
+                </button>
+                <button id="close-workbook" class="px-4 py-2 bg-gray-500 text-white text-base font-medium rounded-md shadow-sm hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-300">
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="bg-gray-800 text-white text-center py-4 mt-10">
+    Creado por Escenarios para la Transformación
+</footer>
+<script>
+    const toolGroups = [
+        {
+            name: "Investigación de Mercado",
+            description: "Herramientas para analizar y entender tu mercado objetivo",
+            color: "purple",
+            tools: [
+                {
+                    name: "Perplexity",
+                    description: "Motor de búsqueda impulsado por IA para investigación de mercado",
+                    url: "https://www.perplexity.ai/",
+                    steps: [
+                        "Identifica 3 palabras clave relacionadas con tu nicho:",
+                        "Busca cada palabra clave en Perplexity y anota una tendencia para cada una:",
+                        "Basándote en estas tendencias, ¿qué oportunidad ves para tu marca personal?"
+                    ]
+                },
+                {
+                    name: "Scispace",
+                    description: "Búsqueda y análisis de literatura científica",
+                    url: "https://typeset.io/",
+                    steps: [
+                        "Busca un artículo científico relevante para tu campo:",
+                        "Resume los principales hallazgos del artículo:",
+                        "¿Cómo podrías aplicar estos hallazgos a tu marca personal?"
+                    ]
+                },
+                {
+                    name: "Vetted",
+                    description: "Análisis y comparación de productos",
+                    url: "https://vetted.ai/",
+                    steps: [
+                        "Identifica 3 productos o servicios en tu nicho:",
+                        "Compara sus características principales:",
+                        "¿Qué elemento único podrías ofrecer en tu marca personal?"
+                    ]
+                }
+            ]
+        },
+        {
+            name: "Desarrollo de Marca",
+            description: "Herramientas para crear y diseñar tu identidad de marca",
+            color: "pink",
+            tools: [
+                {
+                    name: "Namelix",
+                    description: "Generador de nombres impulsado por IA",
+                    url: "https://namelix.com/",
+                    steps: [
+                        "Genera 5 nombres potenciales para tu marca personal:",
+                        "Evalúa cada nombre según relevancia y memorabilidad (1-5):",
+                        "Elige tu nombre favorito y explica por qué:"
+                    ]
+                },
+                {
+                    name: "Ideogram",
+                    description: "Generación de imágenes con IA",
+                    url: "https://ideogram.ai/",
+                    steps: [
+                        "Describe el concepto visual para tu logo:",
+                        "Genera 3 variaciones de logo con Ideogram:",
+                        "Explica qué elementos te gustan de cada variación:"
+                    ]
+                }
+            ]
+        },
+        {
+            name: "Diseño Web",
+            description: "Herramientas para crear y diseñar tu presencia en línea",
+            color: "blue",
+            tools: [
+                {
+                    name: "Galileo AI",
+                    description: "Diseño web impulsado por IA",
+                    url: "https://www.usegalileo.ai/",
+                    steps: [
+                        "Enumera 5 elementos clave que quieres en tu página de inicio:",
+                        "Describe el estilo visual que deseas para tu sitio:",
+                        "Genera un diseño con Galileo AI y anota tus impresiones:"
+                    ]
+                },
+                {
+                    name: "Framer",
+                    description: "Herramienta de diseño y prototipado web",
+                    url: "https://www.framer.com/",
+                    steps: [
+                        "Esboza la estructura básica de tu sitio web:",
+                        "Crea un prototipo simple en Framer:",
+                        "Describe 3 características únicas de tu prototipo:"
+                    ]
+                }
+            ]
+        },
+        {
+            name: "Creación de Contenido",
+            description: "Herramientas para crear contenido visual y escrito",
+            color: "green",
+            tools: [
+                {
+                    name: "Adobe Express",
+                    description: "Diseño gráfico rápido y creación de videos",
+                    url: "https://new.express.adobe.com/",
+                    steps: [
+                        "Define 3 elementos visuales clave de tu marca:",
+                        "Crea una plantilla para redes sociales en Adobe Express:",
+                        "Explica cómo esta plantilla refleja tu identidad de marca:"
+                    ]
+                },
+                {
+                    name: "Canva",
+                    description: "Plataforma de diseño gráfico fácil de usar",
+                    url: "https://www.canva.com/",
+                    steps: [
+                        "Elige 3 temas para publicaciones en redes sociales:",
+                        "Crea una publicación para cada tema en Canva:",
+                        "Describe cómo estas publicaciones se complementan entre sí:"
+                    ]
+                },
+                {
+                    name: "Heygen",
+                    description: "Creación de videos impulsada por IA",
+                    url: "https://heygen.com/",
+                    steps: [
+                        "Escribe un guión breve para tu video de introducción:",
+                        "Genera el video usando Heygen:",
+                        "Analiza qué aspectos del video reflejan mejor tu marca:"
+                    ]
+                },
+                {
+                    name: "Opusclip",
+                    description: "Edición y reutilización de videos con IA",
+                    url: "https://www.opus.pro/",
+                    steps: [
+                        "Selecciona un video largo relacionado con tu marca:",
+                        "Identifica 3 segmentos clave para clips cortos:",
+                        "Crea los clips con Opusclip y describe su propósito:"
+                    ]
+                }
+            ]
+        },
+        {
+            name: "Audio y Voz",
+            description: "Herramientas para crear contenido de audio",
+            color: "yellow",
+            tools: [
+                {
+                    name: "Elevenlabs",
+                    description: "Generación y clonación de voz con IA",
+                    url: "https://elevenlabs.io/",
+                    steps: [
+                        "Escribe un breve guión para la narración de tu marca:",
+                        "Genera la narración usando Elevenlabs:",
+                        "Evalúa cómo la voz generada representa tu marca:"
+                    ]
+                }
+            ]
+        },
+        {
+            name: "Automatización y Chatbots",
+            description: "Herramientas para automatizar interacciones",
+            color: "indigo",
+            tools: [
+                {
+                    name: "Synthflow",
+                    description: "Automatización de llamadas impulsada por IA",
+                    url: "https://synthflow.ai/",
+                    steps: [
+                        "Define el objetivo principal de tu llamada automatizada:",
+                        "Escribe un guión breve para la llamada:",
+                        "Prueba el guión en Synthflow y anota las mejoras necesarias:"
+                    ]
+                },
+                {
+                    name: "Chatfuel",
+                    description: "Plataforma de creación de chatbots",
+                    url: "https://chatfuel.com/",
+                    steps: [
+                        "Lista 5 preguntas frecuentes sobre tu marca personal:",
+                        "Crea respuestas concisas para cada pregunta:",
+                        "Implementa el chatbot en Chatfuel y prueba su eficacia:"
+                    ]
+                }
+            ]
+        },
+        {
+            name: "Asistentes de IA",
+            description: "Asistentes de IA para diversas tareas",
+            color: "red",
+            tools: [
+                {
+                    name: "ChatGPT",
+                    description: "Modelo de lenguaje avanzado para diversas tareas",
+                    url: "https://chat.openai.com/",
+                    steps: [
+                        "Define 3 aspectos clave de tu personalidad profesional:",
+                        "Usa ChatGPT para generar un borrador de 'Sobre Mí':",
+                        "Edita y personaliza el texto generado:"
+                    ]
+                },
+                {
+                    name: "Claude",
+                    description: "Asistente de IA para análisis y creación de contenido",
+                    url: "https://claude.ai/",
+                    steps: [
+                        "Escribe tu mensaje de marca actual:",
+                        "Pide a Claude que analice y sugiera mejoras:",
+                        "Implementa las sugerencias y reescribe tu mensaje:"
+                    ]
+                }
+            ]
+        }
+    ];
+
+    function createToolCard(tool, groupIndex, toolIndex) {
+        const card = document.createElement('div');
+        card.className = 'tool-card bg-white p-4 rounded-lg shadow-md mb-4';
+        card.innerHTML = `
+            <div>
+                <h3 class="text-xl font-semibold">${tool.name}</h3>
+                <p class="text-sm text-gray-600 mb-2">${tool.description}</p>
+                <a href="${tool.url}" target="_blank" class="text-blue-600 hover:underline block mb-2">Pruébalo aquí</a>
+            </div>
+            <div class="mt-4">
+                <h4 class="font-semibold">Ejercicio:</h4>
+                ${tool.steps.map((step, stepIndex) => `
+                    <p class="mb-2">${step}</p>
+                    <textarea class="w-full p-2 border rounded mb-4" rows="2" placeholder="Tu respuesta aquí" data-group="${groupIndex}" data-tool="${toolIndex}" data-step="${stepIndex}"></textarea>
+                `).join('')}
+            </div>
+        `;
+        return card;
+    }
+
+    function createGroupCard(group, index) {
+        const groupCard = document.createElement('div');
+        groupCard.className = `group-card bg-white p-6 rounded-lg shadow-lg border-t-4 border-${group.color}-500`;
+        groupCard.innerHTML = `
+            <h2 class="text-2xl font-bold mb-4 text-${group.color}-700">${group.name}</h2>
+            <p class="text-gray-600 mb-6">${group.description}</p>
+            <div class="tool-container grid grid-cols-1 md:grid-cols-2 gap-4">
+                ${group.tools.map((tool, toolIndex) => createToolCard(tool, index, toolIndex).outerHTML).join('')}
+            </div>
+        `;
+        return groupCard;
+    }
+
+    const toolGroupsSection = document.getElementById('tool-groups');
+    toolGroups.forEach((group, index) => {
+        toolGroupsSection.appendChild(createGroupCard(group, index));
+    });
+
+    // Crear botones de navegación
+    const navButtons = document.getElementById('nav-buttons');
+    toolGroups.forEach((group, index) => {
+        const button = document.createElement('button');
+        button.textContent = group.name;
+        button.className = `px-4 py-2 text-sm font-medium text-white bg-${group.color}-500 rounded-md hover:bg-${group.color}-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-${group.color}-500 mb-2`;
+        button.addEventListener('click', () => {
+            document.querySelector(`.group-card:nth-child(${index + 1})`).scrollIntoView({ behavior: 'smooth' });
+        });
+        navButtons.appendChild(button);
+    });
+
+    // Función para actualizar el contenido del Workbook
+    function updateWorkbook() {
+        const workbookContent = document.getElementById('workbook-content');
+        workbookContent.innerHTML = ''; // Limpiar el contenido anterior
+
+        toolGroups.forEach((group, groupIndex) => {
+            workbookContent.innerHTML += `
+                <div class="mb-6">
+                    <h4 class="text-xl font-semibold mb-2 text-${group.color}-700">${group.name}</h4>
+                    ${group.tools.map((tool, toolIndex) => `
+                        <div class="mb-4">
+                            <h5 class="text-lg font-medium mb-2">${tool.name}</h5>
+                            <ul>
+                                ${tool.steps.map((step, stepIndex) => {
+                                    const textarea = document.querySelector(`textarea[data-group="${groupIndex}"][data-tool="${toolIndex}"][data-step="${stepIndex}"]`);
+                                    const answer = textarea ? textarea.value : 'No hay respuesta aún.';
+                                    return `
+                                        <li class="mb-2">
+                                            <p class="font-medium">${step}</p>
+                                            <p class="whitespace-pre-wrap">${answer}</p> 
+                                        </li>
+                                    `;
+                                }).join('')}
+                            </ul>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        });
+    }
+
+    // Event Listeners para los botones del Workbook
+    document.getElementById('workbook-button').addEventListener('click', () => {
+        updateWorkbook();
+        document.getElementById('workbook').classList.remove('hidden');
+    });
+
+    document.getElementById('clear-workbook').addEventListener('click', () => {
+        document.querySelectorAll('textarea').forEach(textarea => textarea.value = '');
+        updateWorkbook();
+    });
+
+    document.getElementById('print-workbook').addEventListener('click', () => {
+        // Crea una nueva ventana para la impresión
+        const printWindow = window.open('', '', 'width=800,height=600');
+        printWindow.document.write(document.getElementById('workbook-content').innerHTML);
+        printWindow.document.close();
+        printWindow.print();
+        printWindow.close();
+    });
+
+    document.getElementById('save-as-pdf').addEventListener('click', () => {
+        const element = document.getElementById('workbook-content');
+        // Pequeño retraso para asegurar que el contenido se haya cargado
+        setTimeout(() => {
+            html2pdf(element, {
+                margin: 1,
+                filename: 'workbook.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            });
+        }, 500); // Retraso de 500 milisegundos
+    });
+
+    document.getElementById('close-workbook').addEventListener('click', () => {
+        document.getElementById('workbook').classList.add('hidden');
+    });
+</script>
+</body>
+</html>                                
